@@ -33,4 +33,4 @@ export const CATAGORIES = [
     'Automotive',
 ] as const;
 
-export type Category = typeof CATAGORIES[number];
+export type Category = typeof CATAGORIES[number]; // This creates a type that can only be one of the values in the CATAGORIES array
