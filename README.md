@@ -11,7 +11,7 @@
 
 A modern, single-page auction web application built with **React 18**, **TypeScript**, and **Vite**. BidWave allows users to browse live auctions, list items for sale, place bids, and track auction countdowns — all with no backend required. Data is persisted locally using the browser's `localStorage` API.
 
-> **Note:** This project is a learning exercise designed to explore React and TypeScript fundamentals. It intentionally uses `localStorage` as a flat-file data store in place of a traditional database or API.
+> **Note:** This project is a learning exercise for the author designed to explore React and TypeScript fundamentals. It intentionally uses `localStorage` as a flat-file data store in place of a traditional database or API.
 
 ---
 
@@ -47,7 +47,31 @@ Before you begin, ensure you have the following installed on your machine:
 - **npm** `v9.0.0` or higher (bundled with Node.js)
 - **Git** — [Download](https://git-scm.com/)
 
-To verify your versions:
+### Installing with Homebrew (macOS recommended)
+
+[Homebrew](https://brew.sh/) is the easiest way to manage developer tools on macOS. If you don't have it installed, run this in your terminal:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Once Homebrew is installed, you can install all prerequisites with two commands:
+
+```bash
+brew install node   # installs Node.js and npm together
+brew install git
+```
+
+To upgrade any of these tools in the future:
+
+```bash
+brew upgrade node
+brew upgrade git
+```
+
+### Verifying your installation
+
+Regardless of how you installed them, confirm everything is ready:
 
 ```bash
 node --version
