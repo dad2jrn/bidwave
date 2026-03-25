@@ -23,7 +23,7 @@ export interface Listing {
 }
 
 // -----Category-----
-export const CATAGORIES = [
+export const CATEGORIES = [
     'Electronics',
     'Collectibles',
     'Clothing',
