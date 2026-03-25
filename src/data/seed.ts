@@ -1,0 +1,43 @@
+import type { Listing } from '../types';
+
+export const seedListings: Listing[] = [
+  {
+    id: '1',
+    title: 'Vintage Polaroid Camera',
+    description: 'A classic Polaroid OneStep in great working condition. Comes with half a pack of film.',
+    category: 'Collectibles',
+    imageUrl: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400',
+    startingBid: 25,
+    currentBid: 47,
+    sellerName: 'RetroFinds',
+    endsAt: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString(),
+    createdAt: new Date().toISOString(),
+    bids: [],
+  },
+  {
+    id: '2',
+    title: 'Mechanical Keyboard (TKL)',
+    description: 'Tenkeyless with Cherry MX Blue switches. Lightly used, excellent condition.',
+    category: 'Electronics',
+    imageUrl: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400',
+    startingBid: 60,
+    currentBid: 85,
+    sellerName: 'TechDeals',
+    endsAt: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
+    createdAt: new Date().toISOString(),
+    bids: [],
+  },
+  {
+    id: '3',
+    title: 'Signed Baseball Card Collection',
+    description: '12 signed cards from the 1990s. Authenticated and in protective sleeves.',
+    category: 'Collectibles',
+    imageUrl: 'https://images.unsplash.com/photo-1591871937573-74dbba515c4c?w=400',
+    startingBid: 100,
+    currentBid: 100,
+    sellerName: 'RetroFinds',
+    endsAt: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString(),
+    createdAt: new Date().toISOString(),
+    bids: [],
+  },
+];
