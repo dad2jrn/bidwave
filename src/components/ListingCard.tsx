@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Listing } from '../types';
+import { formatCurrency } from '../utils/format';
 
 interface Props {
   listing: Listing;
@@ -47,7 +48,7 @@ export function ListingCard({ listing }: Props) {
             <div>
               <p className="text-xs text-gray-500">Current bid</p>
               <p className="text-lg font-bold text-gray-900">
-                ${listing.currentBid.toFixed(2)}
+                {formatCurrency(listing.currentBid)}
               </p>
             </div>
             <div className="text-right text-sm">
