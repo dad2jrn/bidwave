@@ -18,7 +18,7 @@ export interface Listing {
     currentBid: number;
     sellerName: string;
     endsAt: string; // ISO date string
-    createAt: string; // ISO date string
+    createdAt: string; // ISO date string
     bids: Bid[];
 }
 
