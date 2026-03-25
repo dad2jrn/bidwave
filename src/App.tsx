@@ -1,11 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
+import { BrowsePage } from './pages/BrowsePage';
 
 // We'll create these pages in the next lesson
 // For now, placeholder components so the app compiles
-function BrowsePage() {
-  return <p className="text-gray-500">Browse page coming soon...</p>;
-}
 function CreateListingPage() {
   return <p className="text-gray-500">Create listing page coming soon...</p>;
 }
