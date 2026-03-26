@@ -10,7 +10,7 @@ export function ListingDetailPage() {
     const { listings, updateListing } = useListings();
 
     //----- Find the listing by ID-----
-    const listing = listings.find((1) => l.id === id);
+    const listing = listings.find((l) => l.id === id);
 
     //----- State for new bid input-----
     const [bidderName, setBidderName] = useState('');
