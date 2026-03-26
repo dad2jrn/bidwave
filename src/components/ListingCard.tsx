@@ -1,23 +1,10 @@
 import { Link } from 'react-router-dom';
 import type { Listing } from '../types';
 import { formatCurrency } from '../utils/format';
+import { useCountdown } from '../hooks/useCountdown';
 
 interface Props {
   listing: Listing;
-}
-
-function TimeRemaining({ endsAt }: { endsAt: string }) {
-  const diff = new Date(endsAt).getTime() - Date.now();
-
-  if (diff <= 0) return <span className="text-red-500 font-medium">Ended</span>;
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-  if (days > 0) {
-    return <span className="text-green-600 font-medium">{days}d {hours}h left</span>;
-  }
-  return <span className="text-orange-500 font-medium">{hours}h left</span>;
 }
 
 export function ListingCard({ listing }: Props) {
@@ -52,7 +39,7 @@ export function ListingCard({ listing }: Props) {
               </p>
             </div>
             <div className="text-right text-sm">
-              <TimeRemaining endsAt={listing.endsAt} />
+              <CountdownBadge endsAt={listing.endsAt} />
               <p className="text-xs text-gray-400 mt-0.5">
                 {listing.bids.length} bid{listing.bids.length !== 1 ? 's' : ''}
               </p>
@@ -62,5 +49,36 @@ export function ListingCard({ listing }: Props) {
 
       </div>
     </Link>
+  );
+}
+
+function CountdownBadge({ endsAt }: { endsAt: string }) {
+  const { isEnded, days, hours, minutes, seconds } = useCountdown(endsAt);
+
+  if (isEnded) {
+    return <span className="text-red-500 font-medium text-sm">Ended</span>;
+  }
+
+  if (days > 0) {
+    return (
+      <span className="text-green-600 font-medium text-sm">
+        {days}d {hours}h left
+      </span>
+    );
+  }
+
+  if (hours > 0) {
+    return (
+      <span className="text-orange-500 font-medium text-sm">
+        {hours}h {minutes}m left
+      </span>
+    );
+  }
+
+  // Under an hour — show the seconds ticking
+  return (
+    <span className="text-red-500 font-medium text-sm tabular-nums">
+      {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')} left
+    </span>
   );
 }

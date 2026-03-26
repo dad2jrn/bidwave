@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useListings } from '../hooks/useListings';
 import { formatCurrency } from '../utils/format';
 import type { Bid } from '../types';
+import { useCountdown } from '../hooks/useCountdown';
 
 export function ListingDetailPage() {
     const { id } = useParams<{ id: string }>();
@@ -46,12 +47,14 @@ export function ListingDetailPage() {
     }
 
     //-----auction status helpers-----
-    const isEnded = new Date(listing.endsAt) <= new Date();
+    // const isEnded = new Date(listing.endsAt) <= new Date();
+    const { isEnded, days, hours, minutes, seconds } = useCountdown(listing.endsAt);
     const minimumBid = listing.currentBid + 1;
 
     //-----handle bid submission-----
     function handleBid(e: React.FormEvent) {
         e.preventDefault();
+        if (!listing) return; 
         setError('');
         setSuccess('');
 
@@ -127,6 +130,16 @@ export function ListingDetailPage() {
                         <p className="text-sm text-blue-600 font-medium">Current Bid</p>
                         <p className="text-4xl font-bold text-blue-800 my-1">{formatCurrency(listing.currentBid)}</p>
                         <p className="text-xs text-blue-500">{listing.bids.length} bid{listing.bids.length !== 1 ? 's' : ''} placed</p>
+                        {!isEnded && (
+                            <p className="text-xs text-blue-400 mt-1 tabular-nums">
+                                {days > 0
+                                    ? `${days}d ${hours}h ${minutes}m remaining`
+                                    : hours > 0
+                                        ? `${hours}h ${minutes}m ${seconds}s remaining`
+                                        : `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} remaining`
+                                }
+                            </p>
+                        )}
                     </div>
 
                     {/* Bid form or ended notice */}
